@@ -1,0 +1,132 @@
+*vim-fullscreen.txt* Help to toggle a fullscreen mode on GVim/MacVim
+
+Version: 1.0
+Author:  Alisue <lambdalisue@hashnote.net>          *vim-fullscreen-author*
+License: MIT license  {{{
+    Copyright (c) 2014 Alisue, hashnote.net
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+}}}
+  
+
+CONTENTS                                            *vim-fullscreen-contents*  
+
+Introduction                    |vim-fullscreen-introduction|
+Usage                           |vim-fullscreen-usage|
+Requirements                    |vim-fullscreen-requirements|
+Interface                       |vim-fullscreen-interface|
+    Configurations                  |vim-fullscreen-configurations|
+    Commands                        |vim-fullscreen-commands|
+    Functions                       |vim-fullscreen-functions|
+Use with jedi-vim               |vim-fullscreen-use-with-jedi-vim|
+
+
+===============================================================================
+INTRODUCTION                                    *vim-fullscreen-introduction*
+
+*vim-fullscreen* is a plugin which help users to toggle a fullscreen mode on
+GVim or MacVim.
+
+===============================================================================
+USAGE                                           *vim-fullscreen-usage*
+
+Hit <A-CR> (Alt + Return) to toggle a fullscreen mode.
+You can disable this default keymap with
+|g:fullscreen#enable_default_keymaps|.
+
+===============================================================================
+REQUIREMENTS                                    *vim-fullscreen-requirements*
+
+While MacVim have a built-in fullscreen feature but GVim, this plugin use
+'wmctrl' (http://tomas.styblo.name/wmctrl/) to change the X11 window state.
+Thus you need to install that program to enable this plugin.
+
+Ubuntu/Debian:
+>
+    sudo apt-get install wmctrl
+<
+
+Mac OS X (Not necessary if you use MacVim):
+>
+    brew install wmctrl
+<
+
+===============================================================================
+INTERFACE                                       *vim-fullscreen-interface*
+
+-------------------------------------------------------------------------------
+KEYMAPS                                         *vim-fullscreen-keymaps*
+
+<Plug>(fullscreen-start)                        *<Plug>(fullscreen-start)*
+    Start a fullscreen mode. It call |fullscreen#start()| internally.
+
+<Plug>(fullscreen-stop)                         *<Plug>(fullscreen-stop)*
+    Stop a fullscreen mode. It call |fullscreen#stop()| internally.
+
+<Plug>(fullscreen-toggle)                       *<Plug>(fullscreen-toggle)*
+    Toggle a fullscreen mode. It call |fullscreen#toggle()| internally.
+
+
+-------------------------------------------------------------------------------
+COMMANDS                                        *vim-fullscreen-commands*
+
+:FullscreenStart                                        *:FullscreenStart*
+    Start a fullscreen mode. It call |fullscreen#start()| internally.
+
+:FullscreenStop                                         *:FullscreenStop*
+    Stop a fullscreen mode. It call |fullscreen#stop()| internally.
+
+:FullscreenToggle                                       *:FullscreenToggle*
+    Toggle a fullscreen mode. It call |fullscreen#toggle()| internally.
+
+
+-------------------------------------------------------------------------------
+FUNCTIONS                                       *vim-fullscreen-functions*
+
+fullscreen#start()                                  *fullscreen#start()*
+    Start a fullscreen mode. It use |fullscreen| option in MacVim and 'wmctrl'
+    in GVim to maximize the window.
+    It will set |g:fullscreen#status| to 1.
+
+fullscreen#stop()                                   *fullscreen#stop()*
+    Stop a fullscreen mode. It use |nofullscreen| option in MacVim and 'wmctrl'
+    in GVim to normalize the window.
+    It will set |g:fullscreen#status| to 0.
+
+fullscreen#toggle()                                 *fullscreen#toggle()*
+    Toggle a fullscreen mode. It will call |fullscreen#start()| or
+    |fullscreen#stop()| depends on |g:fullscreen#status| value.
+
+
+-------------------------------------------------------------------------------
+CONFIGURATION                                   *vim-fullscreen-configuration*
+
+g:fullscreen#enable_default_keymaps     *g:fullscreen#enable_default_keymaps*
+    Enable default key maps. The default keymaps are
+
+>
+    nmap <A-CR> <Plug>(fullscreen-toggle)
+<
+
+    Default to 1.
+
+g:fullscreen#status                     *g:fullscreen#status*
+    Represent the current status of a fullscreen mode.
+    You should not change this value manually.
+
