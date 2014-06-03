@@ -46,7 +46,7 @@ GVim or MacVim.
 ===============================================================================
 USAGE                                           *vim-fullscreen-usage*
 
-Hit <A-CR> (Alt + Return) to toggle a fullscreen mode.
+Hit <C-CR> (Ctrl + Return) to toggle a fullscreen mode.
 You can disable this default keymap with
 |g:fullscreen#enable_default_keymaps|.
 
@@ -121,7 +121,7 @@ g:fullscreen#enable_default_keymaps     *g:fullscreen#enable_default_keymaps*
     Enable default key maps. The default keymaps are
 
 >
-    nmap <A-CR> <Plug>(fullscreen-toggle)
+    nmap <C-CR> <Plug>(fullscreen-toggle)
 <
 
     Default to 1.

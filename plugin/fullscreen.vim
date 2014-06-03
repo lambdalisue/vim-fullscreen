@@ -18,7 +18,7 @@ nnoremap <Plug>(fullscreen-stop) :call fullscreen#stop()<CR>
 nnoremap <Plug>(fullscreen-toggle) :call fullscreen#toggle()<CR>
 
 if get(g:, 'fullscreen#enable_default_keymap', 1) == 1
-  nmap <silent> <A-CR> <Plug>(fullscreen-toggle)
+  nmap <silent> <C-CR> <Plug>(fullscreen-toggle)
 endif
 
 let &cpo = s:save_cpo

@@ -5,7 +5,15 @@ GVim or MacVim.
 
 Install
 ----------
-With neobundle.vim, use the following settings
+I recommend you to use some vim plugin manager such as neobundle.vim.
+With [neobundle.vim](https://github.com/Shougo/neobundle.vim), it is quite
+simple
+
+```vim
+NeoBundle 'lambdalisue/vim-fullscreen'
+```
+
+Or if you prefer neobundle's 'lazy loading' then
 
 ```vim
 NeoBundleLazy 'lambdalisue/vim-fullscreen', {
@@ -19,13 +27,14 @@ NeoBundleLazy 'lambdalisue/vim-fullscreen', {
         \   'build': {
         \     'unix': 'sudo apt-get install wmctrl',    " Ubuntu/Debian
         \   }}
+
+nmap <C-CR> <Plug>(fullscreen-toggle)
 ```
 
 Usage
 ----------
-Hit <A-CR> (Alt + Return) to toggle a fullscreen mode.
-You can disable this default keymap with
-|g:fullscreen#enable_default_keymaps|.
+Hit <C-CR> (Ctrl + Return) to toggle a fullscreen mode.
+Or execute `:FullscreenToggle` command.
 
 Documents
 ----------
