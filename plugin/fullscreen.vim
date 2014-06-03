@@ -13,9 +13,9 @@ command! FullscreenStart call fullscreen#start()
 command! FullscreenStop call fullscreen#stop()
 command! FullscreenToggle call fullscreen#toggle()
 
-nnoremap <Plug>(fullscreen-start) :call fullscreen#start()<CR>
-nnoremap <Plug>(fullscreen-stop) :call fullscreen#stop()<CR>
-nnoremap <Plug>(fullscreen-toggle) :call fullscreen#toggle()<CR>
+nnoremap <silent> <Plug>(fullscreen-start) :call fullscreen#start()<CR>
+nnoremap <silent> <Plug>(fullscreen-stop) :call fullscreen#stop()<CR>
+nnoremap <silent> <Plug>(fullscreen-toggle) :call fullscreen#toggle()<CR>
 
 if get(g:, 'fullscreen#enable_default_keymap', 1) == 1
   nmap <silent> <C-CR> <Plug>(fullscreen-toggle)
