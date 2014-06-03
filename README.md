@@ -17,6 +17,7 @@ Or if you prefer neobundle's 'lazy loading' then
 
 ```vim
 NeoBundleLazy 'lambdalisue/vim-fullscreen', {
+        \ 'gui': 1,
         \ 'autoload': {
         \   'commands': [
         \     'FullscreenStart',
@@ -29,6 +30,22 @@ NeoBundleLazy 'lambdalisue/vim-fullscreen', {
         \   }}
 
 nmap <C-CR> <Plug>(fullscreen-toggle)
+```
+
+To enable this plugin on GVim, you also need to install
+[wmctrl](http://tomas.styblo.name/wmctrl/) with
+
+```sh
+$ sudo apt-get install wmctrl     # Ubuntu/Debian
+$ sudo yum install wmctrl         # CentOS
+```
+
+And you might need to configure fullscreen option (`fuoptions`) on MacVim like
+
+```vim
+if has('gui_macvim')
+  set fuoptions=maxvert,maxhorz
+endif
 ```
 
 Usage

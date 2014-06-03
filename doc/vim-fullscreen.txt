@@ -67,6 +67,14 @@ Mac OS X (Not necessary if you use MacVim):
     brew install wmctrl
 <
 
+And you might need to configure fullscreen option (|fuoptions|) on MacVim like
+
+>
+    if has('gui_macvim')
+      set fuoptions=maxvert,maxhorz
+    endif
+<
+
 ===============================================================================
 INTERFACE                                       *vim-fullscreen-interface*
 
