@@ -1,6 +1,6 @@
 *vim-fullscreen.txt* Help to toggle a fullscreen mode on GVim/MacVim
 
-Version: 1.0
+Version: 1.1
 Author:  Alisue <lambdalisue@hashnote.net>          *vim-fullscreen-author*
 License: MIT license  {{{
     Copyright (c) 2014 Alisue, hashnote.net

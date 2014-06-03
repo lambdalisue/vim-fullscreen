@@ -1,13 +1,13 @@
-vim-fullscreen:
+vim-fullscreen
 ==================
 *vim-fullscreen* is a plugin which help users to toggle a fullscreen mode on
 GVim or MacVim.
 
 Install
 ----------
-I recommend you to use some vim plugin manager such as neobundle.vim.
-With [neobundle.vim](https://github.com/Shougo/neobundle.vim), it is quite
-simple
+I recommend you to use some vim plugin manager such as
+[neobundle.vim](https://github.com/Shougo/neobundle.vim).
+With neobundle.vim, the installation is quite simple
 
 ```vim
 NeoBundle 'lambdalisue/vim-fullscreen'
@@ -33,25 +33,27 @@ NeoBundleLazy 'lambdalisue/vim-fullscreen', {
 nmap <C-CR> <Plug>(fullscreen-toggle)
 ```
 
-To enable this plugin on GVim, you also need to install
-[wmctrl](http://tomas.styblo.name/wmctrl/) with
+### MacVim requirements
+vim-fullscreen is ready to use.
+
+### X11 requirements
+vim-fullscreen use 
+[wmctrl](http://tomas.styblo.name/wmctrl/) to enable fullscreen.
+Thus you should use the software with:
 
 ```sh
 $ sudo apt-get install wmctrl     # Ubuntu/Debian
 $ sudo yum install wmctrl         # CentOS
 ```
-
-And you might need to configure fullscreen option (`fuoptions`) on MacVim like
-
-```vim
-if has('gui_macvim')
-  set fuoptions=maxvert,maxhorz
-endif
-```
+### Windows requirements
+vim-fullscreen is ready to use but Windows user need to use vim-fullscreen's
+fullscreen emulator.
+The emulator is not perfect but do not complain about it or give me a pull
+request :-)
 
 Usage
 ----------
-Hit <C-CR> (Ctrl + Return) to toggle a fullscreen mode.
+Hit Ctrl + Return to toggle a fullscreen mode.
 Or execute `:FullscreenToggle` command.
 
 Documents
