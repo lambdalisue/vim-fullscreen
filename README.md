@@ -18,16 +18,17 @@ Or if you prefer neobundle's 'lazy loading' then
 ```vim
 NeoBundleLazy 'lambdalisue/vim-fullscreen', {
         \ 'gui': 1,
+        \ 'build': {
+        \   'unix': 'sudo apt-get install wmctrl'
+        \ },
         \ 'autoload': {
         \   'commands': [
         \     'FullscreenStart',
         \     'FullscreenStop',
         \     'FullscreenToggle',
         \   ],
-        \   'mappgins': '<Plug>(fullscreen-',
-        \   'build': {
-        \     'unix': 'sudo apt-get install wmctrl',    " Ubuntu/Debian
-        \   }}
+        \   'mappings': '<Plug>(fullscreen-',
+        \ }}
 
 nmap <C-CR> <Plug>(fullscreen-toggle)
 ```
