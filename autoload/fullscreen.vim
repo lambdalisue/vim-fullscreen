@@ -10,7 +10,7 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! s:wmctrl(mod)
-  call system(g:fullscreen#wmctrl_exec . "wmctrl -ir " . v:windowid .
+  call system(g:fullscreen#wmctrl_exec . " -ir " . v:windowid .
         \ " -b " . a:mod . ",fullscreen")
 endfunction
 
@@ -20,12 +20,8 @@ function! fullscreen#start()
     set fullscreen
   elseif executable(g:fullscreen#wmctrl_exec)
     call s:wmctrl('add')
-  elseif g:fullscreen#enable_emulator
-    call fullscreen#emulator#start()
   else
-    echoerr "'wmctrl' is required to enable fullscreen feature. "
-    echoerr "Install 'wmctrl' or enable an emulator with:"
-    echoerr "    let g:fullscreen#enable_emulator = 1"
+    call fullscreen#emulator#start()
   endif
   if g:fullscreen#start_callback != 0
     eval(g:fullscreen#start_callback)
@@ -38,12 +34,8 @@ function! fullscreen#stop()
     set nofullscreen
   elseif executable(g:fullscreen#wmctrl_exec)
     call s:wmctrl('remove')
-  elseif g:fullscreen#enable_emulator
-    call fullscreen#emulator#stop()
   else
-    echoerr "'wmctrl' is required to enable fullscreen feature. "
-    echoerr "Install 'wmctrl' or enable an emulator with:"
-    echoerr "    let g:fullscreen#enable_emulator = 1"
+    call fullscreen#emulator#stop()
   endif
   if g:fullscreen#stop_callback != 0
     eval(g:fullscreen#stop_callback)
@@ -67,7 +59,7 @@ endfunction
 
 let s:settings = {
       \   'wmctrl_exec': '"wmctrl"',
-      \   'enable_emulator': 1,
+      \   'auto_config_fuoptions': 1,
       \   'start_callback': 0,
       \   'stop_callback': 0,
       \   'toggle_callback': 0,
@@ -82,6 +74,9 @@ function! s:init()
       exe 'let g:fullscreen#' . key . ' = ' . val
     endif
   endfor
+  if g:fullscreen#auto_config_fuoptions == 1 && has('gui_macvim')
+    set fuoptions=maxvert,maxhorz
+  endif
 endfunction
 
 call s:init()

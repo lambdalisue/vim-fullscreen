@@ -30,49 +30,59 @@ CONTENTS                                            *vim-fullscreen-contents*
 Introduction                    |vim-fullscreen-introduction|
 Usage                           |vim-fullscreen-usage|
 Requirements                    |vim-fullscreen-requirements|
+    Install 'wmctrl'            |vim-fullscreen-install-wmctrl|
 Interface                       |vim-fullscreen-interface|
-    Configurations                  |vim-fullscreen-configurations|
     Commands                        |vim-fullscreen-commands|
     Functions                       |vim-fullscreen-functions|
-Use with jedi-vim               |vim-fullscreen-use-with-jedi-vim|
+    Configurations                  |vim-fullscreen-configurations|
 
 
 ===============================================================================
 INTRODUCTION                                    *vim-fullscreen-introduction*
 
 *vim-fullscreen* is a plugin which help users to toggle a fullscreen mode on
-GVim or MacVim.
+GVim or MacVim. This plugin use the following strategy to enable fullscreen
+mode:
+
+- MacVim |fullscreen| option
+- External window management program 'wmctrl' 
+- Windows |simalt| command
+- |columns| and |lines| options
+
 
 ===============================================================================
 USAGE                                           *vim-fullscreen-usage*
 
-Hit <C-CR> (Ctrl + Return) to toggle a fullscreen mode.
-You can disable this default keymap with
-|g:fullscreen#enable_default_keymaps|.
+Hit Ctrl + Return to toggle a fullscreen mode. This default keymap can be
+disabled with |g:fullscreen#enable_default_keymaps| option.
+
 
 ===============================================================================
 REQUIREMENTS                                    *vim-fullscreen-requirements*
 
-While MacVim have a built-in fullscreen feature but GVim, this plugin use
-'wmctrl' (http://tomas.styblo.name/wmctrl/) to change the X11 window state.
-Thus you need to install that program to enable this plugin.
+There are three options to enable fullscreen mode.
+
+1.  Use MacVim while it has a built-in fullscreen feature (recommended for Mac
+    users)
+2.  Install an external command 'wmctrl' (http://tomas.styblo.name/wmctrl/) to
+    manage Vim window (recommended for X11 users)
+3.  Use |vim-fullscreen| built-in emulator (recommended only for windows user)
+
+-------------------------------------------------------------------------------
+Install 'wmctrl'                                *vim-fullscreen-install-wmctrl*
+
+Numerous Linux distribution have 'wmctrl' in its package repository thus you
+probably can find the program with package management software such as
+'apt-get' or 'yum'.
 
 Ubuntu/Debian:
 >
     sudo apt-get install wmctrl
 <
 
-Mac OS X (Not necessary if you use MacVim):
+Cent OS
 >
-    brew install wmctrl
-<
-
-And you might need to configure fullscreen option (|fuoptions|) on MacVim like
-
->
-    if has('gui_macvim')
-      set fuoptions=maxvert,maxhorz
-    endif
+    yum install wmctrl
 <
 
 ===============================================================================
@@ -108,18 +118,26 @@ COMMANDS                                        *vim-fullscreen-commands*
 FUNCTIONS                                       *vim-fullscreen-functions*
 
 fullscreen#start()                                  *fullscreen#start()*
-    Start a fullscreen mode. It use |fullscreen| option in MacVim and 'wmctrl'
-    in GVim to maximize the window.
+    Start a fullscreen mode. This function automatically select the best way
+    to enable the fullscreen.
     It will set |g:fullscreen#status| to 1.
+    Additionally it will eval |g:fullscreen#start_callback| if any string is
+    specified.
+
 
 fullscreen#stop()                                   *fullscreen#stop()*
-    Stop a fullscreen mode. It use |nofullscreen| option in MacVim and 'wmctrl'
-    in GVim to normalize the window.
+    Stop a fullscreen mode. This function automatically select the best way
+    to disable the fullscreen.
     It will set |g:fullscreen#status| to 0.
+    Additionally it will eval |g:fullscreen#stop_callback| if any string is
+    specified.
 
 fullscreen#toggle()                                 *fullscreen#toggle()*
     Toggle a fullscreen mode. It will call |fullscreen#start()| or
     |fullscreen#stop()| depends on |g:fullscreen#status| value.
+    Additionally it will eval |g:fullscreen#start_callback|,
+    |g:fullscreen#stop_callback|, and |g:fullscreen#toggle_callback| if any
+    string is specified.
 
 
 -------------------------------------------------------------------------------
@@ -134,7 +152,38 @@ g:fullscreen#enable_default_keymaps     *g:fullscreen#enable_default_keymaps*
 
     Default to 1.
 
+g:fullscreen#start_callback             *g:fullscreen#start_callback*
+    If any string is specified, the string will passed to |eval| function
+    after get in the fullscreen mode.
+
+    Default to 0.
+
+g:fullscreen#stop_callback              *g:fullscreen#stop_callback*
+    If any string is specified, the string will passed to |eval| function
+    after get out the fullscreen mode.
+
+    Default to 0.
+
+g:fullscreen#toggle_callback            *g:fullscreen#toggle_callback*
+    If any string is specified, the string will passed to |eval| function
+    after toggle the fullscreen mode.
+
+    Default to 0.
+
+
 g:fullscreen#status                     *g:fullscreen#status*
     Represent the current status of a fullscreen mode.
     You should not change this value manually.
 
+                                        *g:fullscreen#auto_config_fuoptions*
+g:fullscreen#auto_config_fuoptions
+    1 to automatically configure |fuoptions| at plugin loading.
+    It will only affect when user use MacVim.
+
+    Default to 1.
+
+                                *g:fullscreen#emulator#auto_config_guioptions*
+g:fullscreen#emulator#auto_config_guioptions
+    1 to automatically configure |guioptions| in fullscreen emulation mode.
+    
+    Default to 1.

@@ -1,4 +1,4 @@
-vim-fullscreen
+vim-fullscreen:
 ==================
 *vim-fullscreen* is a plugin which help users to toggle a fullscreen mode on
 GVim or MacVim.
