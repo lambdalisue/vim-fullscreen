@@ -152,24 +152,41 @@ g:fullscreen#enable_default_keymaps     *g:fullscreen#enable_default_keymaps*
 
     Default to 1.
 
-g:fullscreen#start_callback             *g:fullscreen#start_callback*
+g:fullscreen#start_callback_pre         *g:fullscreen#start_callback_pre*
+    If any string is specified, the string will passed to |eval| function
+    before get in the fullscreen mode.
+
+    Default to 0.
+
+g:fullscreen#stop_callback_pre          *g:fullscreen#stop_callback_pre*
+    If any string is specified, the string will passed to |eval| function
+    before get out the fullscreen mode.
+
+    Default to 0.
+
+g:fullscreen#toggle_callback_pre        *g:fullscreen#toggle_callback_pre*
+    If any string is specified, the string will passed to |eval| function
+    before toggle the fullscreen mode.
+
+    Default to 0.
+
+g:fullscreen#start_callback_post        *g:fullscreen#start_callback_post*
     If any string is specified, the string will passed to |eval| function
     after get in the fullscreen mode.
 
     Default to 0.
 
-g:fullscreen#stop_callback              *g:fullscreen#stop_callback*
+g:fullscreen#stop_callback_post         *g:fullscreen#stop_callback_post*
     If any string is specified, the string will passed to |eval| function
     after get out the fullscreen mode.
 
     Default to 0.
 
-g:fullscreen#toggle_callback            *g:fullscreen#toggle_callback*
+g:fullscreen#toggle_callback_post       *g:fullscreen#toggle_callback_post*
     If any string is specified, the string will passed to |eval| function
     after toggle the fullscreen mode.
 
     Default to 0.
-
 
 g:fullscreen#status                     *g:fullscreen#status*
     Represent the current status of a fullscreen mode.
