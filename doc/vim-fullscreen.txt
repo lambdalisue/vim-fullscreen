@@ -143,7 +143,7 @@ fullscreen#toggle()                                 *fullscreen#toggle()*
 -------------------------------------------------------------------------------
 CONFIGURATION                                   *vim-fullscreen-configuration*
 
-g:fullscreen#enable_default_keymaps     *g:fullscreen#enable_default_keymaps*
+g:fullscreen#enable_default_keymap        *g:fullscreen#enable_default_keymap*
     Enable default key maps. The default keymaps are
 
 >
