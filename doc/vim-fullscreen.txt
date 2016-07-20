@@ -1,44 +1,47 @@
-*vim-fullscreen.txt* Help to toggle a fullscreen mode on GVim/MacVim
+*vim-fullscreen.txt*	Help to toggle a fullscreen mode on GVim/MacVim
 
-Version: 1.1
+Version: 1.2
 Author:  Alisue <lambdalisue@hashnote.net>          *vim-fullscreen-author*
-License: MIT license  {{{
-    Copyright (c) 2014 Alisue, hashnote.net
+Support: Vim 7.4 and above
+License: MIT license
 
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
+    Copyright (c) 2014-2016 Alisue, hashnote.net
 
-    The above copyright notice and this permission notice shall be included in
-    all copies or substantial portions of the Software.
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files
+    (the "Software"), to deal in the Software without restriction,
+    including without limitation the rights to use, copy, modify, merge,
+    publish, distribute, sublicense, and/or sell copies of the Software,
+    and to permit persons to whom the Software is furnished to do so,
+    subject to the following conditions:
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.
-}}}
-  
+    The above copyright notice and this permission notice shall be
+    included in all copies or substantial portions of the Software.
 
-CONTENTS                                            *vim-fullscreen-contents*  
-
-Introduction                    |vim-fullscreen-introduction|
-Usage                           |vim-fullscreen-usage|
-Requirements                    |vim-fullscreen-requirements|
-    Install 'wmctrl'            |vim-fullscreen-install-wmctrl|
-Interface                       |vim-fullscreen-interface|
-    Commands                        |vim-fullscreen-commands|
-    Functions                       |vim-fullscreen-functions|
-    Configurations                  |vim-fullscreen-configurations|
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-===============================================================================
-INTRODUCTION                                    *vim-fullscreen-introduction*
+=============================================================================
+CONTENTS				*vim-fullscreen-contents*
+
+Introduction			|vim-fullscreen-introduction|
+Usage				|vim-fullscreen-usage|
+Requirements			|vim-fullscreen-requirements|
+  Install 'wmctrl'		|vim-fullscreen-install-wmctrl|
+Interface			|vim-fullscreen-interface|
+  Commands			|vim-fullscreen-commands|
+  Functions			|vim-fullscreen-functions|
+  Configurations		|vim-fullscreen-configurations|
+
+
+=============================================================================
+INTRODUCTION				*vim-fullscreen-introduction*
 
 *vim-fullscreen* is a plugin which help users to toggle a fullscreen mode on
 GVim or MacVim. This plugin use the following strategy to enable fullscreen
@@ -50,15 +53,15 @@ mode:
 - |columns| and |lines| options
 
 
-===============================================================================
-USAGE                                           *vim-fullscreen-usage*
+=============================================================================
+USAGE					*vim-fullscreen-usage*
 
 Hit Ctrl + Return to toggle a fullscreen mode. This default keymap can be
 disabled with |g:fullscreen#enable_default_keymap| option.
 
 
-===============================================================================
-REQUIREMENTS                                    *vim-fullscreen-requirements*
+=============================================================================
+REQUIREMENTS				*vim-fullscreen-requirements*
 
 There are three options to enable fullscreen mode.
 
@@ -68,8 +71,8 @@ There are three options to enable fullscreen mode.
     manage Vim window (recommended for X11 users)
 3.  Use |vim-fullscreen| built-in emulator (recommended only for windows user)
 
--------------------------------------------------------------------------------
-Install 'wmctrl'                                *vim-fullscreen-install-wmctrl*
+-----------------------------------------------------------------------------
+INSTALL WMCTRL				*vim-fullscreen-install-wmctrl*
 
 Numerous Linux distribution have 'wmctrl' in its package repository thus you
 probably can find the program with package management software such as
@@ -79,60 +82,61 @@ Ubuntu/Debian:
 >
     sudo apt-get install wmctrl
 <
-
-Cent OS
+Cent OS:
 >
     yum install wmctrl
 <
 
-===============================================================================
-INTERFACE                                       *vim-fullscreen-interface*
+=============================================================================
+INTERFACE				*vim-fullscreen-interface*
 
--------------------------------------------------------------------------------
-KEYMAPS                                         *vim-fullscreen-keymaps*
+-----------------------------------------------------------------------------
+KEYMAPS					*vim-fullscreen-keymaps*
 
-<Plug>(fullscreen-start)                        *<Plug>(fullscreen-start)*
+<Plug>(fullscreen-start)			*<Plug>(fullscreen-start)*
     Start a fullscreen mode. It call |fullscreen#start()| internally.
 
-<Plug>(fullscreen-stop)                         *<Plug>(fullscreen-stop)*
+<Plug>(fullscreen-stop)				*<Plug>(fullscreen-stop)*
     Stop a fullscreen mode. It call |fullscreen#stop()| internally.
 
-<Plug>(fullscreen-toggle)                       *<Plug>(fullscreen-toggle)*
+<Plug>(fullscreen-toggle)			*<Plug>(fullscreen-toggle)*
     Toggle a fullscreen mode. It call |fullscreen#toggle()| internally.
 
 
--------------------------------------------------------------------------------
-COMMANDS                                        *vim-fullscreen-commands*
+-----------------------------------------------------------------------------
+COMMANDS				*vim-fullscreen-commands*
 
-:FullscreenStart                                        *:FullscreenStart*
+:FullscreenStart					*:FullscreenStart*
     Start a fullscreen mode. It call |fullscreen#start()| internally.
 
-:FullscreenStop                                         *:FullscreenStop*
+:FullscreenStop						*:FullscreenStop*
     Stop a fullscreen mode. It call |fullscreen#stop()| internally.
 
-:FullscreenToggle                                       *:FullscreenToggle*
+:FullscreenToggle					*:FullscreenToggle*
     Toggle a fullscreen mode. It call |fullscreen#toggle()| internally.
 
 
--------------------------------------------------------------------------------
-FUNCTIONS                                       *vim-fullscreen-functions*
+-----------------------------------------------------------------------------
+FUNCTIONS				*vim-fullscreen-functions*
 
-fullscreen#start()                                  *fullscreen#start()*
+fullscreen#start()				*fullscreen#start()*
     Start a fullscreen mode. This function automatically select the best way
-    to enable the fullscreen.
+    to enable the fullscreen if |g:fullscreen#start_command| is missing.
+    Otherwise it evals the command.
     It will set |g:fullscreen#status| to 1.
     Additionally it will eval |g:fullscreen#start_callback| if any string is
     specified.
 
 
-fullscreen#stop()                                   *fullscreen#stop()*
+fullscreen#stop()				*fullscreen#stop()*
     Stop a fullscreen mode. This function automatically select the best way
-    to disable the fullscreen.
+    to disable the fullscreen if |g:fullscreen#stop_command| is missing.
+    Otherwise it evals the command.
     It will set |g:fullscreen#status| to 0.
     Additionally it will eval |g:fullscreen#stop_callback| if any string is
     specified.
 
-fullscreen#toggle()                                 *fullscreen#toggle()*
+fullscreen#toggle()				*fullscreen#toggle()*
     Toggle a fullscreen mode. It will call |fullscreen#start()| or
     |fullscreen#stop()| depends on |g:fullscreen#status| value.
     Additionally it will eval |g:fullscreen#start_callback|,
@@ -140,67 +144,88 @@ fullscreen#toggle()                                 *fullscreen#toggle()*
     string is specified.
 
 
--------------------------------------------------------------------------------
-CONFIGURATION                                   *vim-fullscreen-configuration*
+-----------------------------------------------------------------------------
+CONFIGURATION				*vim-fullscreen-configuration*
 
-g:fullscreen#enable_default_keymap        *g:fullscreen#enable_default_keymap*
-    Enable a default key map. The default keymap is
+g:fullscreen#enable_default_keymap	*g:fullscreen#enable_default_keymap*
 
+	Enable a default key map. The default keymap is
+	Default to 1.
 >
-    nmap <C-CR> <Plug>(fullscreen-toggle)
+	nmap <C-CR> <Plug>(fullscreen-toggle)
 <
+g:fullscreen#start_command		*g:fullscreen#start_command*
 
-    Default to 1.
+	If any string is specified, the string will passed to |eval| function
+	to get in the fullscreen mode.
+>
+	" neovim-qt
+	let g:fullscreen#start_command =
+	      \ "call rpcnotify(0, 'Gui', 'WindowFullscreen', 1)"
+<
+g:fullscreen#stop_command		*g:fullscreen#stop_command*
 
-g:fullscreen#start_callback_pre         *g:fullscreen#start_callback_pre*
-    If any string is specified, the string will passed to |eval| function
-    before get in the fullscreen mode.
+	If any string is specified, the string will passed to |eval| function
+	to get out from the fullscreen mode.
+>
+	" neovim-qt
+	let g:fullscreen#stop_command =
+	      \ "call rpcnotify(0, 'Gui', 'WindowFullscreen', 0)"
+<
+g:fullscreen#start_callback_pre		*g:fullscreen#start_callback_pre*
 
-    Default to 0.
+	If any string is specified, the string will passed to |eval| function
+	before get in the fullscreen mode.
+	Default to 0.
 
-g:fullscreen#stop_callback_pre          *g:fullscreen#stop_callback_pre*
-    If any string is specified, the string will passed to |eval| function
-    before get out the fullscreen mode.
+g:fullscreen#stop_callback_pre		*g:fullscreen#stop_callback_pre*
 
-    Default to 0.
+	If any string is specified, the string will passed to |eval| function
+	before get out the fullscreen mode.
+	Default to 0.
 
-g:fullscreen#toggle_callback_pre        *g:fullscreen#toggle_callback_pre*
-    If any string is specified, the string will passed to |eval| function
-    before toggle the fullscreen mode.
+g:fullscreen#toggle_callback_pre	*g:fullscreen#toggle_callback_pre*
 
-    Default to 0.
+	If any string is specified, the string will passed to |eval| function
+	before toggle the fullscreen mode.
+	Default to 0.
 
-g:fullscreen#start_callback_post        *g:fullscreen#start_callback_post*
-    If any string is specified, the string will passed to |eval| function
-    after get in the fullscreen mode.
+g:fullscreen#start_callback_post	*g:fullscreen#start_callback_post*
 
-    Default to 0.
+	If any string is specified, the string will passed to |eval| function
+	after get in the fullscreen mode.
+	Default to 0.
 
-g:fullscreen#stop_callback_post         *g:fullscreen#stop_callback_post*
-    If any string is specified, the string will passed to |eval| function
-    after get out the fullscreen mode.
+g:fullscreen#stop_callback_post		*g:fullscreen#stop_callback_post*
 
-    Default to 0.
+	If any string is specified, the string will passed to |eval| function
+	after get out the fullscreen mode.
+	Default to 0.
 
-g:fullscreen#toggle_callback_post       *g:fullscreen#toggle_callback_post*
-    If any string is specified, the string will passed to |eval| function
-    after toggle the fullscreen mode.
+g:fullscreen#toggle_callback_post	*g:fullscreen#toggle_callback_post*
 
-    Default to 0.
+	If any string is specified, the string will passed to |eval| function
+	after toggle the fullscreen mode.
+	Default to 0.
 
-g:fullscreen#status                     *g:fullscreen#status*
-    Represent the current status of a fullscreen mode.
-    You should not change this value manually.
+g:fullscreen#status			*g:fullscreen#status*
 
-                                        *g:fullscreen#auto_config_fuoptions*
+	Represent the current status of a fullscreen mode.
+	You should not change this value manually.
+
+					*g:fullscreen#auto_config_fuoptions*
 g:fullscreen#auto_config_fuoptions
-    1 to automatically configure |fuoptions| at plugin loading.
-    It will only affect when user use MacVim.
 
-    Default to 1.
+	1 to automatically configure |fuoptions| at plugin loading.
+	It will only affect when user use MacVim.
+	Default to 1.
 
-                                *g:fullscreen#emulator#auto_config_guioptions*
+				*g:fullscreen#emulator#auto_config_guioptions*
 g:fullscreen#emulator#auto_config_guioptions
-    1 to automatically configure |guioptions| in fullscreen emulation mode.
-    
-    Default to 1.
+
+	1 to automatically configure |guioptions| in fullscreen emulation mode.
+	Default to 1.
+
+
+=============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
