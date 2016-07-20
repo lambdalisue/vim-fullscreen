@@ -16,11 +16,11 @@ endfunction
 
 function! fullscreen#start() abort
   if exists('g:fullscreen#start_callback_pre')
-    eval(g:fullscreen#start_callback_pre)
+    execute g:fullscreen#start_callback_pre
   endif
   let g:fullscreen#status = 1
   if exists('g:fullscreen#start_command')
-    eval(g:fullscreen#start_command())
+    execute g:fullscreen#start_command
   elseif has('gui_macvim')
     set fullscreen
   elseif executable(g:fullscreen#wmctrl_exec)
@@ -29,17 +29,17 @@ function! fullscreen#start() abort
     call fullscreen#emulator#start()
   endif
   if exists('g:fullscreen#start_callback_post')
-    eval(g:fullscreen#start_callback_post)
+    execute g:fullscreen#start_callback_post
   endif
 endfunction
 
 function! fullscreen#stop() abort
   if exists('g:fullscreen#stop_callback_pre')
-    eval(g:fullscreen#stop_callback_pre)
+    execute g:fullscreen#stop_callback_pre
   endif
   let g:fullscreen#status = 0
   if exists('g:fullscreen#stop_command')
-    eval(g:fullscreen#stop_command())
+    execute g:fullscreen#stop_command
   elseif has('gui_macvim')
     set nofullscreen
   elseif executable(g:fullscreen#wmctrl_exec)
@@ -48,13 +48,13 @@ function! fullscreen#stop() abort
     call fullscreen#emulator#stop()
   endif
   if exists('g:fullscreen#stop_callback_post')
-    eval(g:fullscreen#stop_callback_post)
+    execute g:fullscreen#stop_callback_post
   endif
 endfunction
 
 function! fullscreen#toggle() abort
   if exists('g:fullscreen#toggle_callback_pre')
-    eval(g:fullscreen#toggle_callback_pre)
+    execute g:fullscreen#toggle_callback_pre
   endif
   let g:fullscreen#status = get(g:, 'fullscreen#status', 0)
   if g:fullscreen#status == 0
@@ -63,7 +63,7 @@ function! fullscreen#toggle() abort
     call fullscreen#stop()
   endif
   if exists('g:fullscreen#toggle_callback_post')
-    eval(g:fullscreen#toggle_callback_post)
+    execute g:fullscreen#toggle_callback_post
   endif
 endfunction
 

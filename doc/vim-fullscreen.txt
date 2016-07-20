@@ -122,26 +122,28 @@ FUNCTIONS				*vim-fullscreen-functions*
 fullscreen#start()				*fullscreen#start()*
     Start a fullscreen mode. This function automatically select the best way
     to enable the fullscreen if |g:fullscreen#start_command| is missing.
-    Otherwise it evals the command.
+    Otherwise it executes the command.
     It will set |g:fullscreen#status| to 1.
-    Additionally it will eval |g:fullscreen#start_callback| if any string is
+    Additionally it will execute |g:fullscreen#start_callback_pre| and
+    |g:fullscreen#start_callback_post| at before and after if any string is
     specified.
 
 
 fullscreen#stop()				*fullscreen#stop()*
     Stop a fullscreen mode. This function automatically select the best way
     to disable the fullscreen if |g:fullscreen#stop_command| is missing.
-    Otherwise it evals the command.
+    Otherwise it executes the command.
     It will set |g:fullscreen#status| to 0.
-    Additionally it will eval |g:fullscreen#stop_callback| if any string is
+    Additionally it will execute |g:fullscreen#stop_callback_pre| and
+    |g:fullscreen#stop_callback_post| at before and after if any string is
     specified.
 
 fullscreen#toggle()				*fullscreen#toggle()*
     Toggle a fullscreen mode. It will call |fullscreen#start()| or
     |fullscreen#stop()| depends on |g:fullscreen#status| value.
-    Additionally it will eval |g:fullscreen#start_callback|,
-    |g:fullscreen#stop_callback|, and |g:fullscreen#toggle_callback| if any
-    string is specified.
+    Additionally it will execute |g:fullscreen#toggle_callback_pre| and
+    |g:fullscreen#toggle_callback_post| at before and after if any string is
+    specified.
 
 
 -----------------------------------------------------------------------------
@@ -156,57 +158,51 @@ g:fullscreen#enable_default_keymap	*g:fullscreen#enable_default_keymap*
 <
 g:fullscreen#start_command		*g:fullscreen#start_command*
 
-	If any string is specified, the string will passed to |eval| function
-	to get in the fullscreen mode.
+	If any string is specified, the string will be executed by |execute|
+	command to get in the fullscreen mode.
 >
-	" neovim-qt
+	" e.g. neovim-qt
 	let g:fullscreen#start_command =
 	      \ "call rpcnotify(0, 'Gui', 'WindowFullscreen', 1)"
 <
 g:fullscreen#stop_command		*g:fullscreen#stop_command*
 
-	If any string is specified, the string will passed to |eval| function
-	to get out from the fullscreen mode.
+	If any string is specified, the string will be executed by |execute|
+	command to get out from the fullscreen mode.
 >
-	" neovim-qt
+	" e.g. neovim-qt
 	let g:fullscreen#stop_command =
 	      \ "call rpcnotify(0, 'Gui', 'WindowFullscreen', 0)"
 <
 g:fullscreen#start_callback_pre		*g:fullscreen#start_callback_pre*
 
-	If any string is specified, the string will passed to |eval| function
-	before get in the fullscreen mode.
-	Default to 0.
+	If any string is specified, the string will be executed by |execute|
+	command before get in the fullscreen mode.
 
 g:fullscreen#stop_callback_pre		*g:fullscreen#stop_callback_pre*
 
-	If any string is specified, the string will passed to |eval| function
-	before get out the fullscreen mode.
-	Default to 0.
+	If any string is specified, the string will be executed by |execute|
+	command before get out the fullscreen mode.
 
 g:fullscreen#toggle_callback_pre	*g:fullscreen#toggle_callback_pre*
 
-	If any string is specified, the string will passed to |eval| function
-	before toggle the fullscreen mode.
-	Default to 0.
+	If any string is specified, the string will be executed by |execute|
+	command before toggle the fullscreen mode.
 
 g:fullscreen#start_callback_post	*g:fullscreen#start_callback_post*
 
-	If any string is specified, the string will passed to |eval| function
-	after get in the fullscreen mode.
-	Default to 0.
+	If any string is specified, the string will be executed by |execute|
+	command after get in the fullscreen mode.
 
 g:fullscreen#stop_callback_post		*g:fullscreen#stop_callback_post*
 
-	If any string is specified, the string will passed to |eval| function
-	after get out the fullscreen mode.
-	Default to 0.
+	If any string is specified, the string will be executed by |execute|
+	command after get out the fullscreen mode.
 
 g:fullscreen#toggle_callback_post	*g:fullscreen#toggle_callback_post*
 
-	If any string is specified, the string will passed to |eval| function
-	after toggle the fullscreen mode.
-	Default to 0.
+	If any string is specified, the string will be executed by |execute|
+	command after toggle the fullscreen mode.
 
 g:fullscreen#status			*g:fullscreen#status*
 
