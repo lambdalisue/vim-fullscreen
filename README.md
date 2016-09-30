@@ -1,6 +1,9 @@
 vim-fullscreen
 ==================
-![Version 1.2](https://img.shields.io/badge/version-1.2-yellow.svg?style=flat-square) ![Support Vim 7.4 or above](https://img.shields.io/badge/support-Vim%207.4%20or%20above-yellowgreen.svg?style=flat-square) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE) [![Doc](https://img.shields.io/badge/doc-%3Ah%20vim--fullscreen-orange.svg?style=flat-square)](doc/vim-fullscreen.txt) 
+![Version 1.2.1](https://img.shields.io/badge/version-1.2.1-yellow.svg?style=flat-square)
+![Support Vim 7.4 or above](https://img.shields.io/badge/support-Vim%207.4%20or%20above-yellowgreen.svg?style=flat-square)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Doc](https://img.shields.io/badge/doc-%3Ah%20vim--fullscreen-orange.svg?style=flat-square)](doc/vim-fullscreen.txt) 
 
 *vim-fullscreen* is a plugin which help users to toggle a fullscreen mode on
 GVim or MacVim.

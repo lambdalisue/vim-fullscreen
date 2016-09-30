@@ -11,10 +11,11 @@ set cpo&vim
 
 function! s:wmctrl(mod) abort
   call system(printf(
-        \ '%s -ir :ACTIVE: -b %s,fullscreen',
+        \ '%s -r :ACTIVE: -b %s,fullscreen',
         \ g:fullscreen#wmctrl_exec,
         \ a:mod
         \ ))
+  redraw!
 endfunction
 
 function! fullscreen#start() abort
