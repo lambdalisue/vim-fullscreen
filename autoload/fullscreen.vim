@@ -10,8 +10,11 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 function! s:wmctrl(mod) abort
-  call system(g:fullscreen#wmctrl_exec . " -ir " . v:windowid .
-        \ " -b " . a:mod . ",fullscreen")
+  call system(printf(
+        \ '%s -ir :ACTIVE: -b %s,fullscreen',
+        \ g:fullscreen#wmctrl_exec,
+        \ a:mod
+        \ ))
 endfunction
 
 function! fullscreen#start() abort
