@@ -23,18 +23,18 @@ function! fullscreen#emulator#start()
   if has('win32') || has('win64')
     " maximize the window size (Alt Space x)
     simalt ~x
+  else
+    " store the current lines and columns
+    let [s:lines_save, s:columns_save] = [&lines, &columns]
+
+    " emulate the fullscreen 
+    " Note:
+    "   This strategy does not work correctly on dual monitor.
+    "   However, this is a just emulator thus I think in that case users
+    "   should user wmctrl or so on.
+    set columns=999
+    set lines=999
   endif
-
-  " store the current lines and columns
-  let [s:lines_save, s:columns_save] = [&lines, &columns]
-
-  " emulate the fullscreen 
-  " Note:
-  "   This strategy does not work correctly on dual monitor.
-  "   However, this is a just emulator thus I think in that case users
-  "   should user wmctrl or so on.
-  set columns=999
-  set lines=999
 endfunction
 
 function! fullscreen#emulator#stop()
@@ -52,11 +52,11 @@ function! fullscreen#emulator#stop()
   if has('win32') || has('win64')
     " revert the window size (Alt Space r)
     simalt ~r
+  else
+    " restore the lines and columns
+    let [&lines, &columns] = [s:lines_save, s:columns_save]
   endif
-  " restore the lines and columns
-  let [&lines, &columns] = [s:lines_save, s:columns_save]
 endfunction
-
 
 "==============================================================================
 " Configuration
