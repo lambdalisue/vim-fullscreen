@@ -16,7 +16,6 @@ set cpo&vim
 function! fullscreen#emulator#start()
   if g:fullscreen#emulator#auto_config_guioptions == 1
     let s:go_temp = &guioptions
-    set guioptions+=C
     set guioptions-=m
     set guioptions-=T
   endif
@@ -39,7 +38,6 @@ endfunction
 
 function! fullscreen#emulator#stop()
   if g:fullscreen#emulator#auto_config_guioptions == 1
-    set guioptions-=C
     if exists('s:go_temp')
       if s:go_temp =~# 'm'
         set guioptions+=m
